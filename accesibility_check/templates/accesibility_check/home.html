@@ -5,8 +5,10 @@
 {% block title %}ホーム{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>入力したURLのアクセシビリティチェックできます</h1>
-    <a href='{url "accesibility_check:check_page"}'  type=''>チェックページに移動</a>
-    {% endblock %}
+<div class="container" style='text-align: center;'>
+    <h1 >
+        <a  class='btn btn-primary' href='{% url "accesibility_check:check_page" %}'  type=''>アクセシビリティチェックページに移動</a>
+    </h1>
+
 </div>
+{% endblock %}

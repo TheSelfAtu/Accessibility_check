@@ -13,8 +13,8 @@ def alt_check(url):
     parse_url = requests.get(url)
     soup = BeautifulSoup(parse_url.text, 'html.parser')
     imgs_list = [(img, img.get('alt')) for img in soup.find_all('img')]
+    no_alt_list = []
     for img in imgs_list:
         if not img[1]:
-            print(img[0], 'alt属性が設定されていません') 
-alt_check('https://emmoi.net/')
-    
+            no_alt_list.append((img[0].get('src'),'alt属性が設定されていません'))
+    return no_alt_list  

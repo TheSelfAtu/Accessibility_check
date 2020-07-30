@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}チェックページ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>入力したURLのアクセシビリティをチェックできます</h1>
+    <form method='post' action='{% url "accesibility_check:check_page" %}'>{% csrf_token %}
+        {{ form.errors.url }}
+        <label>{{ form.url.label }} {{ form.url }}</label><br>
+    
+        <input class='btn btn-primary' type="submit" value="送信">
+      </form>
+
+      {% if alt_check %}
+      {{alt_check}}
+      {% endif %}
+
+</div>
+{% endblock %}
