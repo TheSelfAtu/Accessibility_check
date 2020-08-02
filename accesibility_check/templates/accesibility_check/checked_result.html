@@ -13,10 +13,17 @@
     
         <input class='btn btn-primary' type="submit" value="送信">
       </form>
-
-      {% if alt_check %}
-      {{alt_check}}
+<hr>
+      {% if alt_none %}
+      <p>alt属性が存在しないimgタグがあります</p>
+      {{alt_none}}
       {% endif %}
+<hr>
+      {% if alt_not_written %}
+      <p>alt属性が空のタグがあります</p>
+      {{alt_not_written}}
+      {% endif %}
+
 
 </div>
 {% endblock %}
