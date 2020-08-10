@@ -6,24 +6,40 @@
 
 {% block content %}
 <div class="container">
-    <h1>入力したURLのアクセシビリティをチェックできます</h1>
-    <form method='post' action='{% url "accesibility_check:check_page" %}'>{% csrf_token %}
-        {{ form.errors.url }}
-        <label>{{ form.url.label }} {{ form.url }}</label><br>
-    
-        <input class='btn btn-primary' type="submit" value="送信">
-      </form>
-<hr>
-      {% if alt_none %}
-      <p>alt属性が存在しないimgタグがあります</p>
-      {{alt_none}}
-      {% endif %}
-<hr>
-      {% if alt_not_written %}
-      <p>alt属性が空のタグがあります</p>
-      {{alt_not_written}}
-      {% endif %}
+      <h2>入力したURLのアクセシビリティをチェックできます</h2>
+      <form method='post' action='{% url "accesibility_check:check_page" %}'>{% csrf_token %}
+            {{ form.errors.url }}
+            <label>{{ form.url.label }} {{ form.url }}</label><br>
 
+            <input class='btn btn-primary' type="submit" value="送信">
+      </form>
+
+
+      <hr>
+      <h3>alt属性が存在しないimgタグ</h3>
+      {% if alt_none %}
+      {{alt_none}}
+      {% else %}
+      <p>なし</p>
+      {% endif %}
+      <hr>
+
+      <h3>alt属性が空のタグ</h3>
+      {% if alt_not_written %}
+      {{alt_not_written}}
+      {% else %}
+      <p>なし</p>
+      {% endif %}
+      
+      <hr>
+      
+      <h3>画像内の文字が多すぎるimgをチェック</h3>
+      {% if letters_on_image %}
+
+      {{letters_on_image}}
+      {% else %}
+      <p>なし</p>
+      {% endif %}
 
 </div>
 {% endblock %}

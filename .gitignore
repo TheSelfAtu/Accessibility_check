@@ -1,4 +1,5 @@
 myvenv
+wslvenv
 *.pyc
 *_
 /.vscode

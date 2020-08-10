@@ -4,7 +4,8 @@ from django.views import generic
 # from .forms import LoanForm
 from datetime import date, timedelta 
 from django.utils import timezone
-from .scripts.check_accesibility import parse_html,alt_none, alt_not_written
+from .scripts.check_accesibility import *
+from .scripts import *
 from .forms import URLForm
 # Create your views here.
 
@@ -23,8 +24,10 @@ def check_page(request):
         #     post.save()
         parsed_html = parse_html(form.cleaned_data['url'])
         context = {
+                    'parsed_html':parsed_html,
                     'alt_none':alt_none(parsed_html),
                     'alt_not_written':alt_not_written(parsed_html),
+                    'letters_on_image': too_much_letters_on_image(parsed_html),
                     'form':form,
                 }
         return render(request,'accesibility_check/checked_result.html', context)
